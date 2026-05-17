@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/ashutandle/vfm-lucid.git'
+                git branch: 'master', url: 'https://github.com/bansoderutuja/project-2.git'
             }
         }
 
@@ -68,7 +68,7 @@ pipeline {
         stage('build and Tag docker image') {
             steps {
                 script {
-                        sh "docker build -t ashutandle/vfm-lucid:latest -f docker/Dockerfile ."
+                        sh "docker build -t rutu1304/project-2:latest -f docker/Dockerfile ."
                     }
             }
         }
@@ -77,8 +77,8 @@ pipeline {
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
-                   sh 'docker login -u ashutandle -p ${dockerhubpwd}'}
-                   sh 'docker push ashutandle/vfm-lucid:latest'
+                   sh 'docker login -u rutu1304 -p ${dockerhubpwd}'}
+                   sh 'docker push rutu1304/project-2:latest'
                 }
             }
         }
